@@ -12,17 +12,18 @@ namespace FrapsBenchConvert
     class Converter
     {
         private string[] columns = {"Frame#", "Time (ms)", "Time (s)", "Delta", "FPS", "Seconds", "Frames per second"};
-        private int[] frameNumber, fps, seconds,framesPerSecond;
-        private float[] timeMs, timeS, delta;
+        private int[] frameNumber, seconds,framesPerSecond;
+        private float[] timeMs, timeS, delta, fps;
         private string fileName;
+        private int lineCount;
 
         public Converter(string fileName)
         {
             this.fileName = fileName;
-            var lineCount = File.ReadLines(fileName).Count();
+            lineCount = File.ReadLines(fileName).Count();
 
             frameNumber = new int[lineCount];
-            fps = new int[lineCount];
+            fps = new float[lineCount];
             seconds = new int[lineCount];
             framesPerSecond = new int[lineCount];
             timeMs = new float[lineCount];
@@ -33,6 +34,37 @@ namespace FrapsBenchConvert
         public void Convert()
         {
             ReadFile();
+            FillArrays();
+        }
+
+        private void FillArrays()
+        {
+            //float second = 0;
+            int secCount = 0;
+            int lastFrame = 0;
+            int thisFrame = 0;
+
+            for (int i = 0; i < lineCount; i++)
+            {
+                timeS[i] = timeMs[i]/1000;
+                if (i != lineCount -1)
+                    delta[i] = timeMs[i] - timeMs[i + 1];
+                else
+                    delta[i] = delta[i-1];
+                fps[i] = 1000/delta[i];
+
+                if (timeMs[i] > (secCount+1)*1000)
+                {
+                    seconds[secCount] = secCount + 1;
+                    thisFrame = frameNumber[i];
+                    framesPerSecond[secCount] = thisFrame - lastFrame;
+                    lastFrame = thisFrame;
+                    secCount++;
+                }
+            }
+
+            Array.Resize(ref seconds, secCount);
+            Array.Resize(ref framesPerSecond, secCount);
         }
 
         public void ReadFile()
