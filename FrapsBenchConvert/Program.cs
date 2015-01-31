@@ -11,13 +11,18 @@ namespace FrapsBenchConvert
 
         private static void Main(string[] args)
         {
-            string[] files;
-            if (args.Length > 0 && File.Exists(args[0]) && args[0].Contains(FIND))
-                files = new[] {args[0]};
-            else
-                files = GetFiles(Directory.GetCurrentDirectory());
-            ConvertFiles(files);
-    }
+            var con =
+                new Converter(
+                    @"C:\Users\Smag\Documents\Visual Studio 2012\Projects\FrapsBenchConvert\FrapsBenchConvert\bin\Debug\PlanetSide2_x64 2015-01-24 22-01-27-19 frametimes.csv");
+            con.Convert();
+
+            //string[] files;
+            //if (args.Length > 0 && File.Exists(args[0]) && args[0].Contains(FIND))
+            //    files = new[] {args[0]};
+            //else
+            //    files = GetFiles(Directory.GetCurrentDirectory());
+            //ConvertFiles(files);
+        }
 
         static void ConvertFiles(string[] files)
         {

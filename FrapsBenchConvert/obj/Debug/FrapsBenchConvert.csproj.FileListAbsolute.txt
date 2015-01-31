@@ -3,3 +3,4 @@ c:\users\smag\documents\visual studio 2012\Projects\FrapsBenchConvert\FrapsBench
 c:\users\smag\documents\visual studio 2012\Projects\FrapsBenchConvert\FrapsBenchConvert\bin\Debug\FrapsBenchConvert.pdb
 c:\users\smag\documents\visual studio 2012\Projects\FrapsBenchConvert\FrapsBenchConvert\obj\Debug\FrapsBenchConvert.exe
 c:\users\smag\documents\visual studio 2012\Projects\FrapsBenchConvert\FrapsBenchConvert\obj\Debug\FrapsBenchConvert.pdb
+C:\Users\Smag\documents\visual studio 2012\Projects\FrapsBenchConvert\FrapsBenchConvert\obj\Debug\FrapsBenchConvert.csprojResolveAssemblyReference.cache
